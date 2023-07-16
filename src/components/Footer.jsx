@@ -12,7 +12,7 @@ const Footer = () => {
         padding: "1em",
         borderTop: "1px solid #ccc",
       }}>
-      Footer
+      Footer!
     </div>
   );
 };
