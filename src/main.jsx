@@ -66,18 +66,23 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Index /> },
       {
-        path: "game",
-        element: <Game />,
-      },
-      {
-        path: "highScores",
-        element: <HighScores />,
-      },
-      {
-        path: "gameOver",
-        element: <GameOver />,
+        errorElement: <ErrorPage />,
+        children: [
+          { index: true, element: <Index /> },
+          {
+            path: "game",
+            element: <Game />,
+          },
+          {
+            path: "highScores",
+            element: <HighScores />,
+          },
+          {
+            path: "gameOver",
+            element: <GameOver />,
+          },
+        ],
       },
     ],
   },
@@ -101,3 +106,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
   </React.StrictMode>
 );
+
+// to: Eric.l.nelson@usdoj.gov
+// cc: yvonne.castillo@accenturefederal.com, kelli.martin@accenturefederal.com
