@@ -38,7 +38,7 @@ export default function Game({ history }) {
       //   window.history.pushState(null, null, "/highScores");
       //   window.location.pathname = "highScores";
     }
-  }, [seconds, ms, window.history]);
+  }, [seconds, ms, navigate]);
 
   const addLeadingZeros = (str, length) => {
     let zeros = "";

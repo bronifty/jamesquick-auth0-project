@@ -14,7 +14,7 @@ const Nav = () => {
       <Link to="/">Home</Link>
       <Link to="/game">Game</Link>
       <Link to="/highScores">High Scores</Link>
-      <Link to="/gameOver">Game Over</Link>
+      <Link to="/login">Login/Register</Link>
     </div>
   );
 };

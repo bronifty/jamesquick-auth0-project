@@ -24,6 +24,7 @@ import Home from "./pages/Home";
 import HighScores from "./pages/HighScores";
 import GameOver from "./pages/GameOver";
 import Layout from "./components/Layout";
+import Login from "./pages/Login";
 
 // const router = createBrowserRouter([
 //   {
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
           {
             path: "gameOver",
             element: <GameOver />,
+          },
+          {
+            path: "login",
+            element: <Login />,
           },
         ],
       },
