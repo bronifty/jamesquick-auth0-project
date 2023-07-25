@@ -67,6 +67,8 @@
 
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { atomScore } from "../store/store.js";
+import { useStore } from "@nanostores/react";
 
 export default function Game() {
   const navigate = useNavigate();
@@ -112,6 +114,7 @@ export default function Game() {
       console.log(e.key, currentCharacter);
       if (e.key === currentCharacter) {
         setScore((prevScore) => prevScore + 1);
+        atomScore.set(score);
       } else {
         if (score > 0) {
           setScore((prevScore) => prevScore - 1);

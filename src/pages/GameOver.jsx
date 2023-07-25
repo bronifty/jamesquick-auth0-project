@@ -1,9 +1,13 @@
-import React from 'react';
+import React from "react";
+import { atomScore } from "../store/store.js";
+import { useStore } from "@nanostores/react";
 
 export default function GameOver() {
-    return (
-        <div>
-            <h1>Game Over</h1>
-        </div>
-    );
+  const atomScoreStore = useStore(atomScore);
+  return (
+    <div>
+      <h1>Game Over</h1>
+      <p>Score: {atomScoreStore}</p>
+    </div>
+  );
 }
