@@ -68,11 +68,14 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { atomScore } from "../store/store.js";
-import { useStore } from "@nanostores/react";
+import { useScoreContext } from "../store/ScoreContext";
+import { atom } from "nanostores";
 
 export default function Game() {
   const navigate = useNavigate();
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useScoreContext();
+  // const [score, setScore] = useState(0);
+  // const { scoreContext, incrementScore, resetScore } = useScoreContext();
   const MAX_SECONDS = 5;
   const [time, setTime] = useState({ sec: MAX_SECONDS, ms: 0 });
   const [currentCharacter, setCurrentCharacter] = useState("");
@@ -114,7 +117,7 @@ export default function Game() {
       console.log(e.key, currentCharacter);
       if (e.key === currentCharacter) {
         setScore((prevScore) => prevScore + 1);
-        atomScore.set(score);
+        atomScore.set(atomScore.get() + 1);
       } else {
         if (score > 0) {
           setScore((prevScore) => prevScore - 1);
