@@ -65,7 +65,7 @@
 //   );
 // }
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Game() {
@@ -73,8 +73,16 @@ export default function Game() {
   const [score, setScore] = useState(0);
   const MAX_SECONDS = 5;
   const [time, setTime] = useState({ sec: MAX_SECONDS, ms: 0 });
+  const [currentCharacter, setCurrentCharacter] = useState("");
+  const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+  const setRandomCharacter = () => {
+    const randomInt = Math.floor(Math.random() * 36);
+    setCurrentCharacter(characters[randomInt]);
+  };
 
   useEffect(() => {
+    setRandomCharacter();
     const interval = setInterval(() => {
       setTime((prevTime) => {
         if (prevTime.ms === 0) {
@@ -99,16 +107,27 @@ export default function Game() {
     }
   }, [time, navigate]);
 
-  const keyUpHandler = (e) => {
-    console.log(e.key);
-  };
+  const keyUpHandler = useCallback(
+    (e) => {
+      console.log(e.key, currentCharacter);
+      if (e.key === currentCharacter) {
+        setScore((prevScore) => prevScore + 1);
+      } else {
+        if (score > 0) {
+          setScore((prevScore) => prevScore - 1);
+        }
+      }
+      setRandomCharacter();
+    },
+    [currentCharacter]
+  );
 
   useEffect(() => {
     document.addEventListener("keyup", keyUpHandler);
     return () => {
       document.removeEventListener("keyup", keyUpHandler);
     };
-  }, []);
+  }, [keyUpHandler]);
 
   return (
     <>
@@ -116,7 +135,7 @@ export default function Game() {
         Score: <strong>{score}</strong>
       </div>
 
-      <div>A</div>
+      <div>{currentCharacter}</div>
       <div>
         Time:{" "}
         <strong>
