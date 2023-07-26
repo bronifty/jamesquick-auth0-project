@@ -18,6 +18,8 @@ export default function Game() {
 
   useEffect(() => {
     setRandomCharacter();
+    setScore(0);
+    atomScore.set(0);
     const interval = setInterval(() => {
       setTime((prevTime) => {
         if (prevTime.ms === 0) {
